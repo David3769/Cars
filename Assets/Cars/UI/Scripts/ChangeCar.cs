@@ -5,21 +5,18 @@ namespace Cars.UI
     public class ChangeCar : MonoBehaviour
     {
         [SerializeField] private ScriptableObject[] _scriptableObjects;
-        //[SerializeField] private ScreenSelection _screenSelection;
+        [SerializeField] private DisplaySelectionCar _displaySelectionCar;
 
         private int _currentIndex;
 
-        public void ChangeImageCar(int change)
+        public void Change(int change)
         {
             _currentIndex += change;
 
-            /*if (_currentIndex < 0)
-                _currentIndex = _scriptableObjectsCar.Length - 1;
-            else if (_currentIndex > _scriptableObjectsCar.Length - 1)
-                _currentIndex = 0;
+            _currentIndex = _currentIndex < 0 ? _scriptableObjects.Length - 1 : _currentIndex;
+            _currentIndex = _currentIndex > _scriptableObjects.Length - 1 ? 0 : _currentIndex;
 
-            if (_screenSelection != null)
-                _screenSelection.Display((Car)_scriptableObjectsCar[_currentIndex]);*/
+            _displaySelectionCar.Display((Car)_scriptableObjects[_currentIndex]);
         }
     }
 }

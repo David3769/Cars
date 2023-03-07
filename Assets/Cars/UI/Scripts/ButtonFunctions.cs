@@ -6,6 +6,7 @@ namespace Cars.UI
     public class ButtonFunctions : MonoBehaviour
     {
         [SerializeField] private GameObject[] _screens;
+        [SerializeField] private ChangeCar _changeCar;
 
         public void OpenScreen(GameObject screenIsOpen)
         {
@@ -31,7 +32,7 @@ namespace Cars.UI
 
         public void ChangeCarImage(int change)
         {
-
+            _changeCar.Change(change);
         }
     }
 }
