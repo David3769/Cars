@@ -34,6 +34,11 @@ namespace Cars.UI
         {
             _changeCar.Change(change);
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
 
