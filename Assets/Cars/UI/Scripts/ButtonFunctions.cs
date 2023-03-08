@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Linq;
-using Cars.Scenes;
 using IJunior.TypedScenes;
 
 namespace Cars.UI
