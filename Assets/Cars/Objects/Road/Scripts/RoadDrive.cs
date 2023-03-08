@@ -1,24 +1,41 @@
 using UnityEngine;
 
-public class RoadDrive : MonoBehaviour
+namespace Cars.Game
 {
-    [SerializeField] private float _speed;
-    //[SerializeField] private float _addSpeed;
-
-    private float _size;
-    private float _position;
-
-    private void Start()
+    public class RoadDrive : MonoBehaviour
     {
-        _size = GetComponent<SpriteRenderer>().bounds.size.y;
-    }
+        [SerializeField] private float _speed;
+        [SerializeField] private float _addSpeed;
 
-    private void Update()
-    {
-        _position -= _speed * Time.deltaTime;
-        _position = Mathf.Repeat(_position, _size);
-        transform.position = new Vector2(0, _position);
+        private float _size;
+        private float _position;
 
-        //_speed += _addSpeed * Time.deltaTime;
+        private void Start()
+        {
+            _size = GetComponent<SpriteRenderer>().bounds.size.y;
+        }
+
+        private void Update()
+        {
+            transform.position = UpdatePosition();
+
+            _speed += AddSpeedRoad();
+        }
+
+        private Vector2 UpdatePosition()
+        {
+            _position -= _speed * Time.deltaTime;
+            _position = Mathf.Repeat(_position, _size);
+
+            Vector2 newPosition = new Vector2(0, _position);
+
+            return newPosition;
+        }
+
+        private float AddSpeedRoad()
+        {
+            return _addSpeed * Time.deltaTime;
+        }
     }
 }
+
