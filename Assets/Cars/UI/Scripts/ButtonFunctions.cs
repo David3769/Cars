@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
+using Cars.Scenes;
+using IJunior.TypedScenes;
 
 namespace Cars.UI
 {
@@ -38,6 +40,16 @@ namespace Cars.UI
         public void ExitGame()
         {
             Application.Quit();
+        }
+
+        public void StartGame(int indexCarSelection)
+        {
+            ChangeSceneAtGame.Change(indexCarSelection);
+        }
+
+        public void ChangeSceneAtMainMenu()
+        {
+            Main.Load();
         }
     }
 }
