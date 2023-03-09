@@ -18,5 +18,10 @@ namespace Cars.UI
 
             _displaySelectionCar.Display((Car)_scriptableObjects[_currentIndex]);
         }
+
+        public Car GetCurrentCar()
+        {
+            return (Car)_scriptableObjects[_currentIndex];
+        }
     }
 }
