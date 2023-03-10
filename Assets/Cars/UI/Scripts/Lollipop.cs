@@ -1,4 +1,4 @@
-﻿using Cars.Player;
+﻿using Cars.Data;
 using TMPro;
 using UnityEngine;
 
@@ -6,15 +6,41 @@ namespace Cars.UI
 {
     public class Lollipop : MonoBehaviour
     {
-        [SerializeField] private PlayerInformation _playerInformation;
         [SerializeField] private TMP_Text _lollipopUI;
+        [SerializeField] private int _pocketLollipops;
 
-        private int _lollipop;
+        public int LollipopCount { get; private set; }
 
-        public void UpdateLollipop()
+        private void Start()
         {
-            _lollipop = _playerInformation.Lollipop;
-            _lollipopUI.text = $"{_lollipop}";
+            LollipopCount = _pocketLollipops;
+        }
+
+        public void Update()
+        {
+            _lollipopUI.text = $"{LollipopCount}";
+        }
+
+        public bool Take(int count)
+        {
+            if (count <= 0 || count > LollipopCount)
+                return false;
+
+            LollipopCount -= count;
+            Save();
+            return true;
+        }
+
+        private void Save()
+        {
+            PlayerData.SaveLollipop(LollipopCount);
+            Debug.Log("Save");
+        }
+
+        private void Load()
+        {
+            LollipopCount = PlayerData.LoadLollipop();
+            Debug.Log("Load");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Cars.UI
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private ChangeCar _changeCar;
-        [SerializeField] private PlayerInformation _playerInformation;
+        [SerializeField] private Player.PlayerCar _playerInformation;
 
         public void Display(Car car)
         {
