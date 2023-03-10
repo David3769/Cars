@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.5
 --- !u!222 &1062176226027032233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3788,8 +3788,8 @@ GameObject:
   - component: {fileID: 1062176226027032235}
   - component: {fileID: 1062176226027032233}
   - component: {fileID: 1062176226027032232}
-  - component: {fileID: 1062176226027032236}
   - component: {fileID: 1062176226027032237}
+  - component: {fileID: 1062176226027032236}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -3859,10 +3859,11 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: c183190c738936749a522264b2b7c43d,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: bc559aafa1560b9478223609bf8884e9, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: f680687cc53f0cb43b61762b1de77fd5, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 6a4f3f9bc674f824e9d0b609b3f53406, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
