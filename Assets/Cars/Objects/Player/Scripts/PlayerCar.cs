@@ -1,5 +1,6 @@
 ﻿using Cars.UI;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Cars.Player
@@ -7,6 +8,11 @@ namespace Cars.Player
     public class PlayerCar : MonoBehaviour
     {
         private List<int> _indexMyCar = new List<int>();
+
+        private void Start()
+        {
+            AddCar(0);
+        }
 
         public void AddCar(int index)
         {

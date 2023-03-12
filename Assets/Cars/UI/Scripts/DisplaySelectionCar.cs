@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using Cars.Player;
 
 namespace Cars.UI
@@ -11,7 +10,7 @@ namespace Cars.UI
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private ChangeCar _changeCar;
-        [SerializeField] private Player.PlayerCar _playerInformation;
+        [SerializeField] private PlayerCar _playerInformation;
 
         public void Display(Car car)
         {
@@ -22,6 +21,7 @@ namespace Cars.UI
         private void Update()
         {
             var currentCarIndex = _changeCar.GetCurrentCar().Index;
+
             if (_playerInformation.CheckInMyCar(currentCarIndex))
                 _price.text = "Куплено";
         }
