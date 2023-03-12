@@ -10,7 +10,7 @@ namespace Cars.UI
         [SerializeField] private Image _image;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private ChangeCar _changeCar;
-        [SerializeField] private PlayerCar _playerInformation;
+        [SerializeField] private PlayerCar _playerCar;
 
         public void Display(Car car)
         {
@@ -22,7 +22,7 @@ namespace Cars.UI
         {
             var currentCarIndex = _changeCar.GetCurrentCar().Index;
 
-            if (_playerInformation.CheckInMyCar(currentCarIndex))
+            if (_playerCar.CheckOnMyCar(currentCarIndex))
                 _price.text = "Куплено";
         }
     }

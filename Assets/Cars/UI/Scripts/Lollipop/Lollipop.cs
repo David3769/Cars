@@ -27,7 +27,7 @@ namespace Cars.UI
                 return false;
 
             LollipopCount -= count;
-            Save();
+           // Save();
             return true;
         }
 

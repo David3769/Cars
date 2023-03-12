@@ -13,7 +13,7 @@ namespace Cars.Player
         private int _priceCar;
         private int _indexCar;
 
-        private void Start()
+        private void Update()
         {
             _priceCar = _changeCar.GetCurrentCar().Price;
             _indexCar = _changeCar.GetCurrentCar().Index;
@@ -32,7 +32,7 @@ namespace Cars.Player
 
         private bool ExceptionCheck()
         {
-            if (_playerCar.CheckInMyCar(_indexCar))
+            if (_playerCar.CheckOnMyCar(_indexCar))
             {
                 ActiveAnimation("Данная машина куплена.", Color.red);
                 return false;

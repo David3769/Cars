@@ -13,17 +13,16 @@ namespace Cars.UI
         public void SetActiveAnimation(string textLog, Color color)
         {
             _panel.SetActive(true);
-            var setColor = _panel.GetComponent<Image>();
-            setColor.color = color;
+            _panel.GetComponent<Image>().color = color;
             _textLog.text = textLog;
 
             StartCoroutine(Animation());
         }
 
-        IEnumerator Animation ()
+        private IEnumerator Animation ()
         {
             Debug.Log("coroutine");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(5f);
             _panel.SetActive(false);
         }
     }
