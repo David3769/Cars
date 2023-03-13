@@ -5,36 +5,35 @@ namespace Cars.Game
     public class RoadDrive : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        [SerializeField] private float _addSpeed;
+        [SerializeField] private float _addingSpeedPerSecond;
 
-        private float _size;
-        private float _position;
+        private float _sizeVertical;
+        private float _positionVertical;
 
         private void Start()
         {
-            _size = GetComponent<SpriteRenderer>().bounds.size.y;
+            _sizeVertical = GetComponent<SpriteRenderer>().bounds.size.y;
+            Invoke("AddSpeed", 1f);
+        }
+
+        private void AddSpeed()
+        {
+            _speed += _addingSpeedPerSecond;
+            Invoke("AddSpeed", 1f);
         }
 
         private void Update()
         {
             transform.position = UpdatePosition();
-
-            _speed += AddSpeedRoad();
         }
 
         private Vector2 UpdatePosition()
         {
-            _position -= _speed * Time.deltaTime;
-            _position = Mathf.Repeat(_position, _size);
+            _positionVertical -= _speed * Time.deltaTime;
+            _positionVertical = Mathf.Repeat(_positionVertical, _sizeVertical);
 
-            Vector2 newPosition = new Vector2(0, _position);
-
+            Vector2 newPosition = new Vector2(0, _positionVertical);
             return newPosition;
-        }
-
-        private float AddSpeedRoad()
-        {
-            return _addSpeed * Time.deltaTime;
         }
     }
 }
