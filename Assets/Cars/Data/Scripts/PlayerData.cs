@@ -1,24 +1,10 @@
-﻿using UnityEngine;
-
-enum NameCategory
-{
-    Lollipop
-}
+﻿using System.Collections.Generic;
 
 namespace Cars.Data
 {
-    public class PlayerData : MonoBehaviour
+    public class PlayerData 
     {
-        public static void SaveLollipop(int count)
-        {
-            PlayerPrefs.SetInt(NameCategory.Lollipop.ToString(), count);
-        }
-
-        public static int LoadLollipop()
-        {
-            var lollipopLoad = PlayerPrefs.GetInt(NameCategory.Lollipop.ToString());
-            return lollipopLoad;
-        }
+        public List<int> MyCar = new List<int>();
     }
 }
 

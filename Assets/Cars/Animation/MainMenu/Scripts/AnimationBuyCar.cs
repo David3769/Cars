@@ -8,22 +8,35 @@ namespace Cars.UI
     public class AnimationBuyCar : MonoBehaviour
     {
         [SerializeField] private TMP_Text _textLog;
-        [SerializeField] private GameObject _panel;
+        [SerializeField] private GameObject _displayAnim;
+        [SerializeField] private float _timeAnimation = 5f;
 
-        public void SetActiveAnimation(string textLog, Color color)
+        private Image _imageDisplay;
+        private const string _textBuyCar = "Покупка прошла успешно!";
+
+        private void Start()
         {
-            _panel.SetActive(true);
-            _panel.GetComponent<Image>().color = color;
-            _textLog.text = textLog;
-
-            StartCoroutine(Animation());
+            _imageDisplay = _displayAnim.GetComponent<Image>();
         }
 
-        private IEnumerator Animation ()
+        public void SetActiveAnimation(Color color, string textLog = _textBuyCar)
         {
-            Debug.Log("coroutine");
-            yield return new WaitForSeconds(5f);
-            _panel.SetActive(false);
+            _displayAnim.SetActive(true);
+            SetOptions(textLog, color);
+
+            StartCoroutine(Animation(_timeAnimation));
+        }
+
+        private void SetOptions(string textLog, Color color)
+        {
+            _imageDisplay.color = color;
+            _textLog.text = textLog;
+        }
+
+        private IEnumerator Animation(float time)
+        {
+            yield return new WaitForSeconds(time);
+            _displayAnim.SetActive(false);
         }
     }
 }

@@ -20,10 +20,13 @@ namespace Cars.UI
 
         private void Update()
         {
-            var currentCarIndex = _changeCar.GetCurrentCar().Index;
+            if (_changeCar != null && _playerCar != null)
+            {
+                var currentIndex = _changeCar.GetCurrentCar().Index;
 
-            if (_playerCar.CheckOnMyCar(currentCarIndex))
-                _price.text = "Куплено";
+                if (_playerCar.CheckOnMyCar(currentIndex))
+                    _price.text = "Куплено";
+            }
         }
     }
 }

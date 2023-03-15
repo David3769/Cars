@@ -1,4 +1,5 @@
-﻿using Cars.UI;
+﻿using Cars.Data;
+using Cars.UI;
 using UnityEngine;
 
 namespace Cars.Player
@@ -10,45 +11,55 @@ namespace Cars.Player
         [SerializeField] private Lollipop _lollipop;
         [SerializeField] private AnimationBuyCar _animationBuyCar;
 
-        private int _priceCar;
-        private int _indexCar;
+        private int _price;
+        private int _index;
 
         private void Update()
         {
-            _priceCar = _changeCar.GetCurrentCar().Price;
-            _indexCar = _changeCar.GetCurrentCar().Index;
+            if (_changeCar != null)
+            {
+                _price = _changeCar.GetCurrentCar().Price;
+                _index = _changeCar.GetCurrentCar().Index;
+            }
         }
+
 
         public void Buy()
         {
             if (ExceptionCheck() == false)
                 return;
 
-            _lollipop.Take(_priceCar);
-            _playerCar.AddCar(_indexCar);
+            _playerCar?.AddCar(_index);
+            _lollipop?.Take(_price);
 
-            ActiveAnimation("Покупка прошла успешно!", Color.green);
+            ActiveAnimation(Color.green);
+            GameFileHandler.Save(_playerCar.GetMyCar());
         }
 
         private bool ExceptionCheck()
         {
-            if (_playerCar.CheckOnMyCar(_indexCar))
+            if (_playerCar.CheckOnMyCar(_index))
             {
-                ActiveAnimation("Данная машина куплена.", Color.red);
+                ActiveAnimation(Color.red, "Данная машина куплена.");
                 return false;
             }
-            else if (_lollipop.LollipopCount < _priceCar)
+            else if (_lollipop.LollipopCount < _price)
             {
-                ActiveAnimation("Недостаточно чупа чупсов.", Color.red);
+                ActiveAnimation(Color.red, "Недостаточно чупа чупсов.");
                 return false;
             }
 
             return true;
         }
 
-        private void ActiveAnimation(string text, Color color)
+        private void ActiveAnimation(Color color, string text)
         {
-            _animationBuyCar.SetActiveAnimation(text, color);
+            _animationBuyCar.SetActiveAnimation(color, text);
+        }
+
+        private void ActiveAnimation(Color color)
+        {
+            _animationBuyCar.SetActiveAnimation(color);
         }
     }
 }

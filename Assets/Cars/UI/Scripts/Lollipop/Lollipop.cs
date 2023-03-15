@@ -1,46 +1,49 @@
-﻿using Cars.Data;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Cars.UI
 {
+    enum NameSaveFile
+    {
+        Lollipop
+    }
+
     public class Lollipop : MonoBehaviour
     {
         [SerializeField] private TMP_Text _lollipopUI;
-        [SerializeField] private int _pocketLollipops;
+        [SerializeField] private float _timeForSave;
 
         public int LollipopCount { get; private set; }
 
         private void Start()
         {
-            LollipopCount = _pocketLollipops;
+            if (PlayerPrefs.HasKey(NameSaveFile.Lollipop.ToString()) == true)
+                LollipopCount = PlayerPrefs.GetInt(NameSaveFile.Lollipop.ToString());
+
+            SaveLollipop();
         }
 
-        public void Update()
+        private void SaveLollipop()
         {
-            _lollipopUI.text = $"{LollipopCount}";
+            PlayerPrefs.SetInt(NameSaveFile.Lollipop.ToString(), LollipopCount);
+
+            Invoke("SaveLollipop", _timeForSave);
         }
 
-        public bool Take(int count)
+        private void Update()
+        {
+            if (_lollipopUI != null)
+            {
+                _lollipopUI.text = $"{LollipopCount}";
+            }
+        }
+
+        public void Take(int count)
         {
             if (count <= 0 || count > LollipopCount)
-                return false;
+                return;
 
             LollipopCount -= count;
-           // Save();
-            return true;
-        }
-
-        private void Save()
-        {
-            PlayerData.SaveLollipop(LollipopCount);
-            Debug.Log("Save");
-        }
-
-        private void Load()
-        {
-            LollipopCount = PlayerData.LoadLollipop();
-            Debug.Log("Load");
         }
     }
 }

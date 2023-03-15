@@ -1,55 +1,29 @@
 ﻿using UnityEngine;
-using System.Linq;
-using IJunior.TypedScenes;
+using Cars.Player;
+using Cars.Data;
+using System.Collections.Generic;
 
-namespace Cars.UI
+public class ButtonFunctions : MonoBehaviour
 {
-    public class ButtonFunctions : MonoBehaviour
+    public void ExitGame()
     {
-        [SerializeField] private GameObject[] _screens;
-        [SerializeField] private ChangeCar _changeCar;
+        Application.Quit();
+    }
 
-        public void OpenScreen(GameObject screenIsOpen)
-        {
-            if (_screens.Contains(screenIsOpen))
-            {
-                CloseScreen(_screens, screenIsOpen);
-                screenIsOpen.SetActive(true);
-            }
-            else
-                Debug.Log($"Требуется добавить {screenIsOpen} в массив _screens класса ButtonFunctions.");
-        }
+    public void ResetCar()
+    {
+        int[] ints = { };
 
-        private void CloseScreen(GameObject[] screens, GameObject screenIsNotClosing)
-        {
-            foreach (var screen in screens)
-            {
-                if (screen == screenIsNotClosing)
-                    continue;
+        GameFileHandler.Save(ints);
+        ints = GameFileHandler.Load<int[]>();
+    }
 
-                screen.SetActive(false);
-            }
-        }
+    [SerializeField] private PlayerCar _playerCar;
 
-        public void ChangeCarImage(int change)
-        {
-            _changeCar.Change(change);
-        }
-
-        public void ExitGame()
-        {
-            Application.Quit();
-        }
-
-        public void StartGame(int indexCarSelection)
-        {
-            ChangeSceneAtGame.Change(indexCarSelection);
-        }
-
-        public void ChangeSceneAtMainMenu()
-        {
-            Main.Load();
-        }
+    public void Load()
+    {
+        _playerCar.MyCar = GameFileHandler.Load<List<int>>();
     }
 }
+
 
