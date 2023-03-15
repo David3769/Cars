@@ -1757,6 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMusic: 0
+  _buttonFunctions: {fileID: 3364448648599479934}
 --- !u!114 &1114164694
 MonoBehaviour:
   m_ObjectHideFlags: 0

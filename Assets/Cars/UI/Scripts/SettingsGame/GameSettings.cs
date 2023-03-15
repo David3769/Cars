@@ -5,13 +5,7 @@ namespace Cars.UI.Settings
     public class GameSettings : MonoBehaviour
     {
         [SerializeField] private bool _isMusic;
-
-        private ButtonFunctions _buttonFunctions;
-
-        private void Start()
-        {
-            _buttonFunctions = new ButtonFunctions();
-        }
+        [SerializeField] private ButtonFunctions _buttonFunctions;
 
         public void IsMusic()
         {
