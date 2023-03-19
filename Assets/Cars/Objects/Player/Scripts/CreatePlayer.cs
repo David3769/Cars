@@ -1,30 +1,34 @@
 ﻿using IJunior.TypedScenes;
 using UnityEngine;
 
-public class CreatePlayer : MonoBehaviour, ISceneLoadHandler<int>
+namespace Cars.Game.Player
 {
-    [SerializeField] private GameObject _car;
-    [SerializeField] private Transform _spawn;
-    [SerializeField] private Sprite[] _sprites;
-
-    public void OnSceneLoaded(int index)
+    public class CreatePlayer : MonoBehaviour, ISceneLoadHandler<int>
     {
-        CreateCar(index);
-    }
+        [SerializeField] private GameObject _car;
+        [SerializeField] private Transform _spawn;
+        [SerializeField] private Sprite[] _sprites;
 
-    private void CreateCar(int index)
-    {
-        if (_car != null)
+        public void OnSceneLoaded(int index)
         {
-            GameObject car = Instantiate(_car, _spawn.transform.position, Quaternion.identity);
+            CreateCar(index);
+        }
 
-            var sprite = car.GetComponent<SpriteRenderer>();
-            sprite.sprite = _sprites[index];
-
-            if (index == 3)
+        private void CreateCar(int index)
+        {
+            if (_car != null)
             {
-                car.GetComponent<Transform>().localScale = new Vector2(1.2f, 1.2f);
+                GameObject car = Instantiate(_car, _spawn.transform.position, Quaternion.identity);
+
+                var sprite = car.GetComponent<SpriteRenderer>();
+                sprite.sprite = _sprites[index];
+
+                if (index == 3)
+                {
+                    car.GetComponent<Transform>().localScale = new Vector2(1.2f, 1.2f);
+                }
             }
         }
     }
 }
+

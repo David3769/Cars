@@ -1,54 +1,57 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
-public class PlayerMove : MonoBehaviour
+namespace Cars.Game.Player
 {
-    private Vector2 _touch;
-
-    private void Update()
+    public class PlayerMove : MonoBehaviour
     {
-        Movement();
-    }
+        private Vector2 _touch;
 
-    private void Movement()
-    {
-        if (Application.isMobilePlatform)
-            MoveMobile();
-        else if (Application.isEditor)
-            MoveEditor();
-    }
-
-    private void MoveMobile()
-    {
-        if (Input.touchCount > 0)
+        private void Update()
         {
-            _touch = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-            transform.position = SetPosition(_touch);
+            Movement();
+        }
+
+        private void Movement()
+        {
+            if (Application.isMobilePlatform)
+                MoveMobile();
+            else if (Application.isEditor)
+                MoveEditor();
+        }
+
+        private void MoveMobile()
+        {
+            if (Input.touchCount > 0)
+            {
+                _touch = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                transform.position = SetPosition(_touch);
+            }
+        }
+
+        private void MoveEditor()
+        {
+            var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (IsPlayerInBoundaries(position))
+                return;
+
+            transform.position = SetPosition(position);
+        }
+
+        private bool IsPlayerInBoundaries(Vector2 position)
+        {
+            if (position.x < -2 || position.x > 2)
+                return true;
+            else if (position.y < -4 || position.y > 0)
+                return true;
+            else
+                return false;
+        }
+
+        private Vector2 SetPosition(Vector2 vector)
+        {
+            return new Vector2(vector.x, vector.y);
         }
     }
-
-    private void MoveEditor()
-    {
-        var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (IsPlayerInBoundaries(position))
-            return;
-
-        transform.position = SetPosition(position);
-    }
-
-    private bool IsPlayerInBoundaries(Vector2 position)
-    {
-        if (position.x < -2 || position.x > 2)
-            return true;
-        else if (position.y < -4 || position.y > 0)
-            return true;
-        else
-            return false;
-    }
-
-    private Vector2 SetPosition(Vector2 vector)
-    {
-        return new Vector2(vector.x, vector.y);
-    }
 }
+
