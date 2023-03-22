@@ -6,7 +6,6 @@ namespace Cars.Game.Enemy
     {
         [SerializeField] private GameObject[] _enemies;
         [SerializeField] private Transform[] _spawnPoints;
-        [SerializeField] private float _speedCreate;
 
         private void Start()
         {
@@ -17,8 +16,12 @@ namespace Cars.Game.Enemy
         {
             Instantiate(_enemies[Random.Range(0, _enemies.Length)],
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)]);
+        }
 
-            Invoke("Create", _speedCreate);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.GetComponent<Movement>() != null)
+                Create();
         }
     }
 }
