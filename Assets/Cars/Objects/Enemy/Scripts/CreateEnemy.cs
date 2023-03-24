@@ -20,7 +20,7 @@ namespace Cars.Game.Enemy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<Movement>() != null)
+            if (collision.GetComponent<MovementEnemy>() != null)
                 Create();
         }
     }

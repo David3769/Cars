@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cars.Game.Enemy
 {
-    public class Movement : MonoBehaviour
+    public class MovementEnemy : MonoBehaviour
     {
         private float _speed;
         private RoadDrive _roadDrive;
