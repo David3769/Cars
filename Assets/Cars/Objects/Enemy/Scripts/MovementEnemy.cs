@@ -5,13 +5,14 @@ namespace Cars.Game.Enemy
 {
     public class MovementEnemy : MonoBehaviour
     {
-        private float _speed;
         private RoadDrive _roadDrive;
+        private GameOver _gameOver;
+        private float _speed;
 
         private void Start()
         {
-            _roadDrive = FindObjectOfType<RoadDrive>()
-                .GetComponent<RoadDrive>();
+            _roadDrive = FindObjectOfType<RoadDrive>().GetComponent<RoadDrive>();
+            _gameOver = FindObjectOfType<GameOver>().GetComponent<GameOver>();
         }
 
         private void Update()
@@ -26,7 +27,7 @@ namespace Cars.Game.Enemy
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.GetComponent<PlayerMove>())
-                Debug.Log("Car");
+                _gameOver.SetGameOver();
         }
     }
 }

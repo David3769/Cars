@@ -8,7 +8,8 @@ namespace Cars.Game.Lollipop
         [SerializeField] private TMP_Text _lollipopUI;
 
         private int _lollipop;
-        private int _collected;
+
+        public int Collected { get; private set; }
 
         private void Awake()
         {
@@ -20,8 +21,13 @@ namespace Cars.Game.Lollipop
 
         public void AddLollipop(int added)
         {
-            _collected += added;
+            Collected += added;
             _lollipop += added;
+        }
+
+        public void SaveLollipop()
+        {
+            PlayerPrefs.SetInt("Lollipop", _lollipop);
         }
 
         private void UpdateLollipopUI()
