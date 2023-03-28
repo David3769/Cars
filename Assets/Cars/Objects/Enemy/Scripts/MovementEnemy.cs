@@ -5,18 +5,23 @@ namespace Cars.Game.Enemy
 {
     public class MovementEnemy : MonoBehaviour
     {
-        private RoadDrive _roadDrive;
-        private IGameOver _gameOver = new GameOver();
+        [SerializeField] private RoadDrive _road;
+        [SerializeField] private GameOver _gameOver;
+
         private float _speed;
 
         private void Start()
         {
-            _roadDrive = FindObjectOfType<RoadDrive>().GetComponent<RoadDrive>();
+            if (_road == null)
+                _road = FindObjectOfType<RoadDrive>().GetComponent<RoadDrive>();
+
+            if (_gameOver == null)
+                _gameOver = FindObjectOfType<GameOver>().GetComponent<GameOver>();
         }
 
         private void Update()
         {
-            _speed = _roadDrive.Speed + 3f;
+            _speed = _road.Speed + 3f;
 
             var newPosition = transform.position;
             newPosition.y -= _speed * Time.deltaTime;

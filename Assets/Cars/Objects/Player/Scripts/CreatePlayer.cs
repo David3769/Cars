@@ -9,15 +9,12 @@ namespace Cars.Game.Player
         [SerializeField] private Transform _spawn;
         [SerializeField] private Sprite[] _sprites;
 
-        private IGameOver game = new GameOver();
-
         public void OnSceneLoaded(int index)
         {
             if (FindObjectOfType<PlayerMove>())
                 Destroy(FindObjectOfType<PlayerMove>().gameObject);
 
             CreateCar(index);
-            SetStateGame();
         }
 
         private void CreateCar(int index)
@@ -34,11 +31,6 @@ namespace Cars.Game.Player
                     car.GetComponent<Transform>().localScale = new Vector2(1.2f, 1.2f);
                 }
             }
-        }
-
-        private void SetStateGame()
-        {
-            game.State = States.Game;
         }
     }
 }

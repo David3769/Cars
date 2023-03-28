@@ -10,11 +10,16 @@ using Cars.Game.Player;
 public class ButtonFunctions : MonoBehaviour
 {
     [SerializeField] private PlayerCar _playerCar;
+    [SerializeField] private GameOver _game;
 
     private void Start()
     {
-        if (_playerCar == null && SceneManager.GetActiveScene().name == "Main")
-            _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
+        if (SceneController.IsCurrentNameScene("Main"))
+            if (_playerCar == null)
+                _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
+        else if (SceneController.IsCurrentNameScene("Game"))
+            if (_game == null)
+                _game = FindObjectOfType<GameOver>().GetComponent<GameOver>();
     }
 
     public void ExitGame()
@@ -38,9 +43,7 @@ public class ButtonFunctions : MonoBehaviour
     public void RestartGame()
     {
         Game.Load(ChangeCar.CurrentIndex);
-
-        IGameOver gameOver = new GameOver();
-        gameOver.SetRestartGame();
+        _game.SetRestartGame();
     }
 }
 

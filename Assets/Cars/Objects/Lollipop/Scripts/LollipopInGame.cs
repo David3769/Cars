@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Cars.Game.Lollipop
 {
-    public class LollipopInGame : ILollipopData, ILollipop
+    public class LollipopInGame : MonoBehaviour
     {
         [SerializeField] private TMP_Text _lollipopUI;
 
@@ -11,7 +11,7 @@ namespace Cars.Game.Lollipop
 
         public int Collected { get; set; }
 
-        public void LoadLollipop()
+        public void Start()
         {
             _lollipop = PlayerPrefs.GetInt("Lollipop");
             _lollipopUI.text = _lollipop.ToString();
@@ -33,6 +33,7 @@ namespace Cars.Game.Lollipop
         private void UpdateLollipopUI()
         {
             _lollipopUI.text = _lollipop.ToString();
+            Invoke("UpdateLollipopUI", 1f);
         }
     }
 }

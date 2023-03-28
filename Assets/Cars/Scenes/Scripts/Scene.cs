@@ -10,11 +10,12 @@ public class Scene : MonoBehaviour
 
     private void Start()
     {
-        if (_changeCar == null)
-            _changeCar = FindObjectOfType<ChangeCar>().GetComponent<ChangeCar>();
+        if (SceneController.IsCurrentNameScene("Main"))
+            if (_changeCar == null)
+                _changeCar = FindObjectOfType<ChangeCar>().GetComponent<ChangeCar>();
 
-        if (_playerCar == null)
-            _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
+            if (_playerCar == null)
+                _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
     }
 
     public void SetSceneGame()
@@ -27,8 +28,9 @@ public class Scene : MonoBehaviour
         }
     }
 
-    public void SetSceneMainMenu()
+    public void SetSceneMain()
     {
+        Time.timeScale = 1f;
         Main.Load();
     }
 }

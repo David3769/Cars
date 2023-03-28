@@ -4,19 +4,28 @@ using UnityEngine;
 
 namespace Cars.Game.Player
 {
-    public class GameOver : IGameOver
+    public class GameOver : MonoBehaviour
     {
-        public States State { get; set; }
+        private States _state = States.Game;
+
+        public States State => _state;
         
         [SerializeField] private GameObject _menuGameOver;
         [SerializeField] private GameObject _buttonPause;
         [SerializeField] private TMP_Text _collectedLollipop;
+        [SerializeField] private LollipopInGame _lollipop;
 
-        private ILollipopData _lollipop = new LollipopInGame();
+        private void Start()
+        {
+            _state = States.Game;
+
+            if (_lollipop == null)
+                _lollipop = FindObjectOfType<LollipopInGame>().GetComponent<LollipopInGame>();
+        }
 
         public void SetGameOver()
         {
-            State = States.GameOver;
+            _state = States.GameOver;
             Time.timeScale = 0f;
 
             _buttonPause?.SetActive(false);
@@ -28,7 +37,7 @@ namespace Cars.Game.Player
 
         public void SetRestartGame()
         {
-            State = States.Game;
+            _state = States.Game;
             Time.timeScale = 1f;
         }
     }

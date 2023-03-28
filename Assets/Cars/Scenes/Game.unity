@@ -253,7 +253,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67270644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 914864791}
+        m_MethodName: SetSceneMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &67270644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56e30c309417714f99fb51874c3bd81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 0
   _menuGameOver: {fileID: 575219176}
   _buttonPause: {fileID: 88440409}
   _collectedLollipop: {fileID: 1675317485}
@@ -1329,6 +1339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914864790}
   - component: {fileID: 914864789}
+  - component: {fileID: 914864791}
   m_Layer: 0
   m_Name: Button Handler
   m_TagString: Untagged
@@ -1349,6 +1360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCar: {fileID: 0}
+  _game: {fileID: 198559097}
 --- !u!4 &914864790
 Transform:
   m_ObjectHideFlags: 0
@@ -1363,6 +1375,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914864791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914864788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cfdffdbcc0b0141bece94d73702307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeCar: {fileID: 0}
+  _playerCar: {fileID: 0}
 --- !u!1 &934546420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,7 +2383,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1361675171}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 914864791}
+        m_MethodName: SetSceneMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1361675171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3750,8 +3787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lollipopUI: {fileID: 5111064804588080783}
-  _lollipop: 0
-  <Collected>k__BackingField: 0
 --- !u!114 &5111064804254768446
 MonoBehaviour:
   m_ObjectHideFlags: 0
