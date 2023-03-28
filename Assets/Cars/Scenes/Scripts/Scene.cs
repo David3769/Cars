@@ -2,6 +2,7 @@
 using UnityEngine;
 using IJunior.TypedScenes;
 using Cars.Player;
+using Cars.Game;
 
 public class Scene : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class Scene : MonoBehaviour
     private void Start()
     {
         if (SceneController.IsCurrentNameScene("Main"))
+        {
             if (_changeCar == null)
                 _changeCar = FindObjectOfType<ChangeCar>().GetComponent<ChangeCar>();
 
             if (_playerCar == null)
                 _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
+        }
     }
 
     public void SetSceneGame()
@@ -31,6 +34,7 @@ public class Scene : MonoBehaviour
     public void SetSceneMain()
     {
         Time.timeScale = 1f;
+        StateManager.SetGame();
         Main.Load();
     }
 }

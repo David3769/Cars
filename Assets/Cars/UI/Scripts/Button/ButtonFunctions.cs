@@ -6,20 +6,18 @@ using IJunior.TypedScenes;
 using Cars.UI;
 using UnityEngine.SceneManagement;
 using Cars.Game.Player;
+using Cars.Game;
 
 public class ButtonFunctions : MonoBehaviour
 {
+    [Header("Scene Main")]
     [SerializeField] private PlayerCar _playerCar;
-    [SerializeField] private GameOver _game;
 
     private void Start()
     {
         if (SceneController.IsCurrentNameScene("Main"))
             if (_playerCar == null)
                 _playerCar = FindObjectOfType<PlayerCar>().GetComponent<PlayerCar>();
-        else if (SceneController.IsCurrentNameScene("Game"))
-            if (_game == null)
-                _game = FindObjectOfType<GameOver>().GetComponent<GameOver>();
     }
 
     public void ExitGame()
@@ -43,7 +41,17 @@ public class ButtonFunctions : MonoBehaviour
     public void RestartGame()
     {
         Game.Load(ChangeCar.CurrentIndex);
-        _game.SetRestartGame();
+        StateManager.SetGame();
+    }
+
+    public void SetPause()
+    {
+        StateManager.SetPause();
+    }
+
+    public void SetPlay()
+    {
+        StateManager.SetGame();
     }
 }
 

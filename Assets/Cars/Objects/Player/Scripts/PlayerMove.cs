@@ -4,19 +4,11 @@ namespace Cars.Game.Player
 {
     public class PlayerMove : MonoBehaviour
     {
-        [SerializeField] private GameOver _game;
-
         private Vector2 _touch;
-
-        private void Start()
-        { 
-            if (_game == null)
-                _game = FindObjectOfType<GameOver>().GetComponent<GameOver>();
-        }
 
         private void Update()
         {
-            if (_game.State == States.Game)
+            if (StateManager.GetCurrentState() == States.Game)
                 Movement();
         }
 
