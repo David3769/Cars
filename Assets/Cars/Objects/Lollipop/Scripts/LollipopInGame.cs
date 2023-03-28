@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Cars.Game.Lollipop
 {
-    public class LollipopInGame : MonoBehaviour
+    public class LollipopInGame : ILollipopData, ILollipop
     {
         [SerializeField] private TMP_Text _lollipopUI;
 
-        private int _lollipop;
+        private static int _lollipop;
 
-        public int Collected { get; private set; }
+        public int Collected { get; set; }
 
-        private void Awake()
+        public void LoadLollipop()
         {
             _lollipop = PlayerPrefs.GetInt("Lollipop");
             _lollipopUI.text = _lollipop.ToString();
@@ -33,7 +33,6 @@ namespace Cars.Game.Lollipop
         private void UpdateLollipopUI()
         {
             _lollipopUI.text = _lollipop.ToString();
-            Invoke("UpdateLollipopUI", 1f);
         }
     }
 }
