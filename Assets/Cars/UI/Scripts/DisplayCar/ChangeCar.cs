@@ -7,7 +7,14 @@ namespace Cars.UI
         [SerializeField] private ScriptableObject[] _cars;
         [SerializeField] private DisplaySelectionCar _displaySelectionCar;
 
-        public int CurrentIndex { get; private set; }
+        public static int CurrentIndex { get; private set; }
+
+        private void Start()
+        {
+            if (_displaySelectionCar == null)
+                _displaySelectionCar = FindObjectOfType<DisplaySelectionCar>()
+                    .GetComponent<DisplaySelectionCar>();
+        }
 
         public void Change(int change)
         {

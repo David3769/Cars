@@ -6,13 +6,12 @@ namespace Cars.Game.Enemy
     public class MovementEnemy : MonoBehaviour
     {
         private RoadDrive _roadDrive;
-        private GameOver _gameOver;
+        private IGameOver _gameOver = new GameOver();
         private float _speed;
 
         private void Start()
         {
             _roadDrive = FindObjectOfType<RoadDrive>().GetComponent<RoadDrive>();
-            _gameOver = FindObjectOfType<GameOver>().GetComponent<GameOver>();
         }
 
         private void Update()

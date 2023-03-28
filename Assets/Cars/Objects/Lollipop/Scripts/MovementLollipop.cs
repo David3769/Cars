@@ -9,17 +9,13 @@ namespace Cars.Game.Lollipop
         [SerializeField] private int[] _addLollipops;
 
         private RespawnLollipop _respawnLollipop;
-        private LollipopInGame _lollipop;
+        private ILollipop _lollipop = new LollipopInGame();
 
         private void Start()
         {
             if (_respawnLollipop == null)
                 _respawnLollipop = FindObjectOfType<RespawnLollipop>()
                     .GetComponent<RespawnLollipop>();
-
-            if (_lollipop == null)
-                _lollipop = FindObjectOfType<LollipopInGame>()
-                    .GetComponent<LollipopInGame>();
         }
 
         private void Update()

@@ -4,18 +4,18 @@ namespace Cars.Game.Player
 {
     public class PlayerMove : MonoBehaviour
     {
-        private GameOver _states;
+        private States _states;
         private Vector2 _touch;
+        private IGameOver _game = new GameOver();
 
         private void Start()
-        {
-            if (_states == null)
-                _states = FindObjectOfType<GameOver>().GetComponent<GameOver>();
+        { 
+            _states = _game.State;
         }
 
         private void Update()
         {
-            if (_states.State == States.Game)
+            if (_states == States.Game)
                 Movement();
         }
 
