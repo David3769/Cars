@@ -8,7 +8,9 @@ namespace Cars.Game.Lollipop
         [SerializeField] private float _speed;
         [SerializeField] private int[] _addLollipops;
         [SerializeField] private RespawnLollipop _respawnLollipop;
+        [SerializeField] private float _yPositionForDelete;
         [SerializeField] private LollipopInGame _lollipop;
+        [SerializeField] private BoostEffect _effect;
 
         private void Start()
         {
@@ -19,10 +21,17 @@ namespace Cars.Game.Lollipop
             if (_lollipop == null)
                 _lollipop = FindObjectOfType<LollipopInGame>()
                     .GetComponent<LollipopInGame>();
+
+            if (_effect == null)
+                _effect = FindObjectOfType<BoostEffect>()
+                    .GetComponent<BoostEffect>();
         }
 
         private void Update()
         {
+            if (transform.position.y <= _yPositionForDelete)
+                Respawn();
+
             transform.Translate(0, -_speed * Time.deltaTime, 0);
         }
 
@@ -30,12 +39,24 @@ namespace Cars.Game.Lollipop
         {
             if (collision.GetComponent<PlayerMove>())
             {
-                var add = _addLollipops[Random.Range(0, 
-                    _addLollipops.Length - 1)];
-
-                Respawn();
-                _lollipop.AddLollipop(add);
+                if (_effect.Effect == Effects.X2)
+                {
+                    _effect.SubtractEffect();
+                    AddLollipop(2);
+                }
+                else
+                {
+                    AddLollipop(1);
+                }
             }
+        }
+
+        private void AddLollipop(int boost)
+        {
+            var add = _addLollipops[Random.Range(0, _addLollipops.Length)] * boost;
+            
+            Respawn();
+            _lollipop.AddLollipop(add);
         }
 
         public void Respawn()

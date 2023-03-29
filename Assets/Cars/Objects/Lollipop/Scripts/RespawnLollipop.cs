@@ -18,7 +18,7 @@ namespace Cars.Game.Lollipop
         public void Respawn()
         {
             _lollipop.transform.position = 
-                _respawnPoints[Random.Range(0, _respawnPoints.Length - 1)]
+                _respawnPoints[Random.Range(0, _respawnPoints.Length)]
                     .position;
         }
     }

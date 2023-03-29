@@ -7,6 +7,7 @@ namespace Cars.Game.Enemy
     {
         [SerializeField] private RoadDrive _road;
         [SerializeField] private GameOver _gameOver;
+        [SerializeField] private BoostEffect _effect;
 
         private float _speed;
 
@@ -17,6 +18,9 @@ namespace Cars.Game.Enemy
 
             if (_gameOver == null)
                 _gameOver = FindObjectOfType<GameOver>().GetComponent<GameOver>();
+
+            if (_effect == null)
+                _effect = FindObjectOfType<BoostEffect>().GetComponent<BoostEffect>();
         }
 
         private void Update()
@@ -31,7 +35,12 @@ namespace Cars.Game.Enemy
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.GetComponent<PlayerMove>())
-                _gameOver.SetGameOver();
+            {
+                if (_effect.Effect == Effects.Shield)
+                    _effect.SubtractEffect();
+                else
+                    _gameOver.SetGameOver();
+            }
         }
     }
 }
