@@ -5,22 +5,21 @@ namespace Cars.Game.Enemy
 {
     public class MovementEnemy : MonoBehaviour
     {
-        [SerializeField] private RoadDrive _road;
-        [SerializeField] private GameOver _gameOver;
-        [SerializeField] private BoostEffect _effect;
-
+        private RoadDrive _road;
+        private GameOver _gameOver;
+        private BoostEffect _effect;
         private float _speed;
 
         private void Start()
         {
             if (_road == null)
-                _road = FindObjectOfType<RoadDrive>().GetComponent<RoadDrive>();
+                _road = FindObjectOfType<RoadDrive>();
 
             if (_gameOver == null)
-                _gameOver = FindObjectOfType<GameOver>().GetComponent<GameOver>();
+                _gameOver = FindObjectOfType<GameOver>();
 
             if (_effect == null)
-                _effect = FindObjectOfType<BoostEffect>().GetComponent<BoostEffect>();
+                _effect = FindObjectOfType<BoostEffect>();
         }
 
         private void Update()

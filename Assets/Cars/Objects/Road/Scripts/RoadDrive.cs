@@ -8,6 +8,7 @@ namespace Cars.Game
 
         [SerializeField] private float _addingSpeedPerSecond;
 
+        private float _driveDistance = 0;
         private float _sizeVertical;
         private float _positionVertical;
 
@@ -21,6 +22,7 @@ namespace Cars.Game
         private void Update()
         {
             transform.position = UpdatePosition();
+            _driveDistance += Speed * Time.deltaTime;
         }
 
         private Vector2 UpdatePosition()
@@ -36,6 +38,17 @@ namespace Cars.Game
         {
             Speed += _addingSpeedPerSecond;
             Invoke("AddSpeed", 1f);
+        }
+
+        public int GetDriveDistance()
+        {
+            return Mathf.RoundToInt(_driveDistance);
+        }
+
+        public void SaveDriveDistance()
+        {
+            if (PlayerPrefs.HasKey("distance"))
+                PlayerPrefs.SetInt("distance", Mathf.RoundToInt(_driveDistance));
         }
     }
 }
