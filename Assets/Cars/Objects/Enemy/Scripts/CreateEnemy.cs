@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Cars.Game.Enemy
+namespace Cars.Game
 {
     public class CreateEnemy : MonoBehaviour
     {
@@ -20,7 +20,7 @@ namespace Cars.Game.Enemy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<MovementEnemy>() != null)
+            if (collision.GetComponent<MovementEnemy>())
                 Create();
         }
     }

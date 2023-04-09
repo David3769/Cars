@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Cars.Data
 {
-    public class PlayerData 
+    [Serializable]
+    public class PlayerData
     {
-        public List<int> MyCar = new List<int>();
+        public int[] Score;
+        public List<int> Cars;
+        public int Lollipop;
+
+        public PlayerData(int[] score, List<int> cars, int lollipop)
+        {
+            Score = score;
+            Cars = cars;
+            Lollipop = lollipop;
+        }
     }
 }
-

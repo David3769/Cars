@@ -2,59 +2,52 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cars.Game.Player
+namespace Cars.Game
 {
     public class BoostEffect : MonoBehaviour
     {
+        public static BoostEffect Instance { get; private set; }
+
         [SerializeField] private TMP_Text _text;
-        [SerializeField] private int _countEffect;
+        [SerializeField] private int _setCountEffect;
+        
+        private int _countEffect;
+        private Image _image;
 
-        private Effects _effect;
-
-        public Image _image;
-
-        public Effects Effect => _effect;
+        public Effects Effect;
 
         private void Start()
         {
+            if (Instance == null)
+                Instance = this;
+
             _image = GetComponent<Image>();
             _image.color = Color.clear;
-
-            _effect = Effects.None;
+            Effect = Effects.None;
             _text.gameObject.SetActive(false);
         }
 
         public void SetEffect(Color color, Effects effect)
         {
-            _image.color = color;
-            _effect = effect;
             _text.gameObject.SetActive(true);
-            SetEffect();
+            _image.color = color;
+            Effect = effect;
+            _countEffect = _setCountEffect;
+            _text.text = _countEffect.ToString();
         }
 
-        private void SetEffect()
-        {
-            _countEffect = 5;
-            UpdateCountEffectUI();
-        }
         public void SubtractEffect()
         {
             _countEffect--;
-
+            _text.text = _countEffect.ToString();
             if (_countEffect == 0)
             {
-                _effect = Effects.None;
+                Effect = Effects.None;
                 _image.color = Color.clear;
                 _text.gameObject.SetActive(false);
             }
-
-            UpdateCountEffectUI();
         }
 
-        private void UpdateCountEffectUI()
-        {
-            _text.text = _countEffect.ToString();
-        }
     }
 
     public enum Effects

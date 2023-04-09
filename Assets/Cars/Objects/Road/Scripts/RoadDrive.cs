@@ -4,7 +4,9 @@ namespace Cars.Game
 {
     public class RoadDrive : MonoBehaviour
     {
-        public float Speed { get; private set; } = 1f;
+        public static RoadDrive Instance { get; private set; }
+
+        public float Speed = 1f;
 
         [SerializeField] private float _addingSpeedPerSecond;
 
@@ -14,9 +16,18 @@ namespace Cars.Game
 
         private void Start()
         {
+            if (Instance == null)
+                Instance = this;
+
             _sizeVertical = GetComponent<SpriteRenderer>().bounds.size.y;
 
-            Invoke("AddSpeed", 1f);
+            Invoke(nameof(AddSpeed), 1f);
+        }
+
+        private void AddSpeed()
+        {
+            Speed += _addingSpeedPerSecond;
+            Invoke(nameof(AddSpeed), 1f);
         }
 
         private void Update()
@@ -34,21 +45,9 @@ namespace Cars.Game
             return newPosition;
         }
 
-        private void AddSpeed()
-        {
-            Speed += _addingSpeedPerSecond;
-            Invoke("AddSpeed", 1f);
-        }
-
         public int GetDriveDistance()
         {
             return Mathf.RoundToInt(_driveDistance);
-        }
-
-        public void SaveDriveDistance()
-        {
-            if (PlayerPrefs.HasKey("distance"))
-                PlayerPrefs.SetInt("distance", Mathf.RoundToInt(_driveDistance));
         }
     }
 }

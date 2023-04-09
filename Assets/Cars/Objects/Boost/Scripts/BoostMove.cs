@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
 
-namespace Cars.Game.Player
+namespace Cars.Game
 {
     public class BoostMove : MonoBehaviour
     {
         [SerializeField] private float _yPositionForDelete;
         [SerializeField] private Effects _giveEffect;
 
-        private BoostEffect _effect;
         private float _speed;
         private Color _color;
 
         private void Start()
         {
-            if (_effect == null)
-                _effect = FindObjectOfType<BoostEffect>().GetComponent<BoostEffect>();
-
             _color = GetComponent<SpriteRenderer>().color;
             _speed = Random.Range(2f, 5f);
         }
 
         private void Update()
+        {
+            Movement();
+        }
+
+        private void Movement()
         {
             if (transform.position.y <= _yPositionForDelete)
                 Destroy(gameObject);
@@ -30,9 +31,9 @@ namespace Cars.Game.Player
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<PlayerMove>())
+            if (collision.GetComponent<MovementPlayer>())
             {
-                _effect.SetEffect(_color, _giveEffect);
+                BoostEffect.Instance.SetEffect(_color, _giveEffect);
                 Destroy(gameObject);
             }
         }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Cars.Game.Player
+namespace Cars.Game
 {
     public class CreateBoost : MonoBehaviour
     {
@@ -10,7 +10,7 @@ namespace Cars.Game.Player
 
         private void Start ()
         {
-            Invoke("Create", _createTime);
+            Invoke(nameof(Create), _createTime);
         }
 
         private void Create()
@@ -19,7 +19,7 @@ namespace Cars.Game.Player
                         _spawnPoints[Random.Range(0, _spawnPoints.Length)].position,
                         Quaternion.identity);
 
-            Invoke("Create", _createTime);
+            Invoke(nameof(Create), _createTime);
         }
     }
 }
