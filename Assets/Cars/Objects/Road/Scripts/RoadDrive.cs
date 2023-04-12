@@ -6,11 +6,11 @@ namespace Cars.Game
     {
         public static RoadDrive Instance { get; private set; }
 
-        public float Speed = 1f;
+        public float Speed = 1;
 
         [SerializeField] private float _addingSpeedPerSecond;
 
-        private float _driveDistance = 0;
+        private float _score = 0;
         private float _sizeVertical;
         private float _positionVertical;
 
@@ -33,7 +33,7 @@ namespace Cars.Game
         private void Update()
         {
             transform.position = UpdatePosition();
-            _driveDistance += Speed * Time.deltaTime;
+            _score += Speed * Time.deltaTime;
         }
 
         private Vector2 UpdatePosition()
@@ -45,9 +45,14 @@ namespace Cars.Game
             return newPosition;
         }
 
-        public int GetDriveDistance()
+        public int GetScore()
         {
-            return Mathf.RoundToInt(_driveDistance);
+            return Mathf.RoundToInt(_score);
+        }
+
+        public int GetSpeed()
+        {
+            return Mathf.RoundToInt(Speed);
         }
     }
 }
