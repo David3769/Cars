@@ -10,7 +10,7 @@ namespace Cars.UI
 
         private int[] _score;
 
-        private void Start()
+        private void OnEnable()
         { 
             UpdateScoreboard();
         }

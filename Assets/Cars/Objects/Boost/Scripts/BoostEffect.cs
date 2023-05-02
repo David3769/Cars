@@ -8,46 +8,67 @@ namespace Cars.Game
     {
         public static BoostEffect Instance { get; private set; }
 
-        [SerializeField] private TMP_Text _text;
+        public Effects Effect;
+
         [SerializeField] private int _setCountEffect;
+        [SerializeField] private GameObject _shield;
+        [SerializeField] private Sprite[] _icons;
+        [SerializeField] private GameObject _image;
         
         private int _countEffect;
-        private Image _image;
-
-        public Effects Effect;
 
         private void Start()
         {
             if (Instance == null)
                 Instance = this;
 
-            _image = GetComponent<Image>();
-            _image.color = Color.clear;
             Effect = Effects.None;
-            _text.gameObject.SetActive(false);
         }
 
-        public void SetEffect(Color color, Effects effect)
+        public void SetEffect(Effects effect)
         {
-            _text.gameObject.SetActive(true);
-            _image.color = color;
             Effect = effect;
             _countEffect = _setCountEffect;
-            _text.text = _countEffect.ToString();
+            UpdateEffect();
+        }
+
+        private void UpdateEffect()
+        {
+            switch (Effect)
+            {
+                case Effects.None:
+                    SetEffect(false);
+                    break;
+                case Effects.X2:
+                    SetEffect(false, _icons[0]);
+                    break;
+                case Effects.Shield:
+                    SetEffect(true, _icons[1]);
+                    break;
+            }
+        }
+
+        private void SetEffect(bool isShield, Sprite icon = null)
+        {
+            _shield.SetActive(isShield);
+            if (icon == null)
+                _image.SetActive(false);
+            else
+            {
+                _image.SetActive(true);
+                _image.GetComponent<Image>().sprite = icon;
+            }
         }
 
         public void SubtractEffect()
         {
             _countEffect--;
-            _text.text = _countEffect.ToString();
             if (_countEffect == 0)
             {
                 Effect = Effects.None;
-                _image.color = Color.clear;
-                _text.gameObject.SetActive(false);
+                UpdateEffect();
             }
         }
-
     }
 
     public enum Effects

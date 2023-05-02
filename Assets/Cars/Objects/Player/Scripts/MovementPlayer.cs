@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Cars.Game
 {
@@ -7,7 +6,7 @@ namespace Cars.Game
     {
         private void Update()
         {
-            if (StateManager.GetCurrentState() == States.Game)
+            if (GameController.Instance.IsGame == true)
                 Movement();
         }
 

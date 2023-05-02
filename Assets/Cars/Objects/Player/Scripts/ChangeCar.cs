@@ -21,8 +21,7 @@ namespace Cars.UI
                 Instance = this;
 
             _playerDataHandler = PlayerDataHandler.Instance;
-            _playerDataHandler.CurrentIndexCar = 0;
-            _playerDataHandler.SetSelectionIndexCar();
+            _playerDataHandler.SetSelectionIndexCar(0);
             UpdateUI();
         }
 
@@ -51,22 +50,16 @@ namespace Cars.UI
         private void ChangeUI(PlayerScriptableObject car)
         {
             _image.sprite = car.Sprite;
-            var isMyCar = _playerDataHandler.CheckOnMyCar();
-            if (isMyCar)
+            if (_playerDataHandler.CheckOnMyCar())
                 _price.text = "Куплено";
             else
-                _price.text = car.Price.ToString();
+                _price.text = $"Купить за: {car.Price}";
         }
 
         public void UpdateUI()
         {
             if (PlayerDataHandler.Instance.CheckOnMyCar())
                 _price.text = "Куплено";
-            else
-            {
-                var car = _cars[PlayerDataHandler.Instance.CurrentIndexCar] as PlayerScriptableObject;
-                _price.text = $"{car.Price}";
-            }
         }
 
         public PlayerScriptableObject GetPlayerScriptableObject()

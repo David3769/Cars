@@ -9,31 +9,36 @@ namespace Cars.Game
         public float Speed = 1;
 
         [SerializeField] private float _addingSpeedPerSecond;
+        [SerializeField] private float _setStartCreateBoost;
 
         private float _score = 0;
         private float _sizeVertical;
         private float _positionVertical;
 
-        private void Start()
+        private void Awake()
         {
             if (Instance == null)
                 Instance = this;
-
             _sizeVertical = GetComponent<SpriteRenderer>().bounds.size.y;
-
-            Invoke(nameof(AddSpeed), 1f);
-        }
-
-        private void AddSpeed()
-        {
-            Speed += _addingSpeedPerSecond;
-            Invoke(nameof(AddSpeed), 1f);
         }
 
         private void Update()
         {
-            transform.position = UpdatePosition();
-            _score += Speed * Time.deltaTime;
+            if (GameController.Instance.IsGame == true)
+            {
+                if (Speed >= _setStartCreateBoost)
+                    if (CreateBoost.Instance.IsCreate == false)
+                        CreateBoost.Instance.SetStartCreate();
+
+                AddSpeed();
+                transform.position = UpdatePosition();
+                _score += Speed * Time.deltaTime;
+            }
+        }
+
+        private void AddSpeed()
+        {
+            Speed += _addingSpeedPerSecond * Time.deltaTime;
         }
 
         private Vector2 UpdatePosition()

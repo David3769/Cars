@@ -10,7 +10,7 @@ namespace Cars.Game
         private void Update()
         {
             var score = RoadDrive.Instance.GetScore();
-            _text.text = $"Score - {score}";
+            _text.text = $"{score}";
         }
     }
 }

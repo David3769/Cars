@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cars.Data
@@ -55,6 +56,11 @@ namespace Cars.Data
                 Player.Lollipop += count;
         }
 
+        public void SetSelectionIndexCar(int index)
+        {
+            PlayerPrefs.SetInt(SELECTION_INDEX_CAR_PATH, index);
+        }
+
         public void SetSelectionIndexCar()
         {
             PlayerPrefs.SetInt(SELECTION_INDEX_CAR_PATH, CurrentIndexCar);
@@ -63,6 +69,12 @@ namespace Cars.Data
         public int GetSelectionIndexCar()
         {
             return PlayerPrefs.GetInt(SELECTION_INDEX_CAR_PATH);
+        }
+
+        public void SortScore()
+        {
+            Array.Sort(Player.Score);
+            Array.Reverse(Player.Score);
         }
     }
 }

@@ -9,11 +9,11 @@ namespace Cars.Game
         [SerializeField] private Transform _spawn;
         [SerializeField] private Sprite[] _sprites;
 
-        private void Start()
+        private void Awake()
         {
             if (FindObjectOfType<MovementPlayer>())
                 Destroy(FindObjectOfType<MovementPlayer>().gameObject);
-            var index = PlayerDataHandler.Instance.CurrentIndexCar;
+            var index = PlayerDataHandler.Instance.GetSelectionIndexCar();
             CreateCar(index);
         }
 

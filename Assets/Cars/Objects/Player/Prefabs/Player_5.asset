@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player_5
   m_EditorClassIdentifier: 
   Index: 4
-  Price: 40
-  Sprite: {fileID: 21300000, guid: 9482365caebacc442b20689f0031ba50, type: 3}
+  Price: 899
+  Sprite: {fileID: 21300000, guid: 9babbef395de47443976f4cd34dfbb43, type: 3}

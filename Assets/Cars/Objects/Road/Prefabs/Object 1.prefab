@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 2281670533289373302}
   - component: {fileID: 1160021587697403101}
   - component: {fileID: 2729822249778274251}
-  m_Layer: 0
+  - component: {fileID: -5040072973186870778}
+  - component: {fileID: -1538962246373956125}
+  m_Layer: 8
   m_Name: Object 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,15 +70,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5d0a67a52f031f9499c9fbb603a27408, type: 3}
+  m_SortingLayerID: -742491393
+  m_SortingLayer: 1
+  m_SortingOrder: -10
+  m_Sprite: {fileID: 21300000, guid: 46069f5afb744bc4ebea3d8cc538baba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 1}
+  m_Size: {x: 0.9375, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,3 +96,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740b24eebb72d44448a7a8623e9e09f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &-5040072973186870778
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742118966618401171}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1362471}
+  serializedVersion: 2
+  m_Radius: 0.3637529
+--- !u!50 &-1538962246373956125
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742118966618401171}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5

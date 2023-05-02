@@ -8,17 +8,11 @@ namespace Cars.Game
         [SerializeField] private Effects _giveEffect;
 
         private float _speed;
-        private Color _color;
-
-        private void Start()
-        {
-            _color = GetComponent<SpriteRenderer>().color;
-            _speed = Random.Range(2f, 5f);
-        }
 
         private void Update()
         {
-            Movement();
+            if (GameController.Instance.IsGame == true)
+                Movement();
         }
 
         private void Movement()
@@ -26,6 +20,7 @@ namespace Cars.Game
             if (transform.position.y <= _yPositionForDelete)
                 Destroy(gameObject);
 
+            _speed = RoadDrive.Instance.Speed;
             transform.Translate(0f, -_speed * Time.deltaTime, 0f);
         }
 
@@ -33,7 +28,7 @@ namespace Cars.Game
         {
             if (collision.GetComponent<MovementPlayer>())
             {
-                BoostEffect.Instance.SetEffect(_color, _giveEffect);
+                BoostEffect.Instance.SetEffect(_giveEffect);
                 Destroy(gameObject);
             }
         }
